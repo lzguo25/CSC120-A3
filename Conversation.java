@@ -2,31 +2,46 @@ import java.util.Scanner;
 class Conversation {
 
   public static void main(String[] arguments) {
-    // You will start the conversation here.
-    // Sample of input and output
-    //loop for amount of "rounds"
-    
+    // This takes in user input.
     Scanner input = new Scanner(System.in);
     input.useDelimiter(System.getProperty("line.separator"));
 
-  // int roundsNumber = 0;
-    System.out.print("How many rounds of conversation would you like?");
+
+    //Greets the user and asks for an int input.
+    System.out.println("Hi there! What's your name?");
+    String name = input.next();
+    System.out.println("Hello " + name +"!");
+
+    System.out.print("How many rounds of conversation would you like," + name + " ?");
     int user_Round_Number = input.nextInt();
 
-    //make a for loop that breaks when you input valid number REMINDER TO LOOK UP HOW TO BREAK LOOPS
+    
+    
+    //Loop determines how many rounds of conversation will occur based on user input to user_Round_Number
     for (int i = 0; i <= user_Round_Number; i++) {
       if (user_Round_Number == 0) {
             System.out.println("Okay, bye.");
-            
-            // How do I ask for input again and store it in the same variable? It gives me the "double variable" error
-            //call main agan - recursion
-              
 
       } else {
             System.out.println("Ok, let's start! What's in your mind today?");
             break;
 
       }
+    }
+
+
+
+
+
+
+    //Conversation begins
+    for (int i = 0; i < user_Round_Number; i++){
+      String user_response = input.next();
+      System.out.println("Aja");
+
+    
+
+
     }
 
     //* I -> you 
@@ -36,26 +51,20 @@ class Conversation {
     // * my -> your
     // * your -> my
 
-      // String user_response = input.next();
-      // System.out.println("Aja");
+    
 
 
 
 
 
 
-    System.out.println("Hi there! What's your name?");
-    String name = input.next();
-    System.out.println("Hello " + name +"!");
+    
     System.out.println("What would you like to talk about?");
 
 
     String convoStarter = input.next();
     if (convoStarter.contains("you")){
       String chatResponse = convoStarter.replace("you", "I");
-
-    
-      
       System.out.println(chatResponse);
     };
 
@@ -65,6 +74,35 @@ class Conversation {
     
     // System.out.println(convoStarter);
     input.close();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+    //variable for conversation transcript
+    char transcript[];
     
 }
 }
+
