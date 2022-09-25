@@ -4,14 +4,14 @@ class Conversation {
   public static void main(String[] arguments) 
   {
     List <String> transcript = new ArrayList<>(); //this will create an array list for the conversation transcript
-    System.out.print("How many rounds of conversation would you like? "); //prints out a question asking for a user input
-    Scanner input = new Scanner(System.in); //scans the input for the number of desired rounds
+    System.out.print("How many rounds of conversation would you like? "); //this prints out a question asking for a user input
+    Scanner input = new Scanner(System.in); //this scans the input for the number of desired rounds
     int numRounds = input.nextInt();
 
-    Scanner user_input = new Scanner(System.in); //scans the user input and determines how many rounds there will be
+    Scanner user_input = new Scanner(System.in); //scans the user input and determines how many conversation rounds there will be
     String answer = input.nextLine();
 
-    System.out.println("What's your name?");//prints an initial prompt for the user to answer
+    System.out.println("What's your name?");//prints an initial prompt for the user to answer, does not count toward the conversation round
     transcript.add("What's your name?\n"); //adds the initial prompt to array list for transcript
     
     String name = input.next();
@@ -23,20 +23,21 @@ class Conversation {
 
     
 
-    
-    System.out.println("How's your day been?"); //prints another prompt for the user to answer
-    transcript.add("How's your day been? \n"); //adds the prompt to array list for transcript
+    //Conversation and conversation round officially begins here
+    System.out.println("How's your day?"); //prints another prompt for the user to answer
+    transcript.add("How's your day ? \n"); //adds the prompt to array list for transcript
     String response = input.next();
 
-    String[] responses = new String[]{"Uh huh.", "Interesting.", "That's good to hear.", "Ok.", "Cool beans.", "That is amusing."}; //create string of canned responses
+    //fixed responses that are automatically used when the user input doesn't include any words that require mirroring
+    String[] responses = new String[]{"Uh huh.", "Interesting.", "That's good to hear.", "Ok.", "That's cool.", "You're so funny!.", "Oh...", "Anything else?"}; 
     
 
-    //The loop will go on for however many rounds the user inputted
+    //The loop will go on for however many rounds the user inputted, and includes conditional statements to identify specific mirror words
     for (int i = 0; i < numRounds; i++){ 
-      String newUserInput = input.nextLine(); //take in user input
-      transcript.add(newUserInput + "\n"); //add user input to array list for transcript
+      String newUserInput = input.nextLine(); //takes in user input
+      transcript.add(newUserInput + "\n"); //adds user input to array list for conversation transcript
 
-      // The conditional statements will identify mirror words
+      // The conditional statements will identify mirror words within user input
         if (newUserInput.contains(" you ") || newUserInput.contains("You") || 
         newUserInput.contains("I ") || newUserInput.contains(" I ")|| 
         newUserInput.contains(" me ") || newUserInput.contains("Me ") || 
@@ -79,18 +80,18 @@ class Conversation {
                   words[j]= "I'm";
                 } 
               }
-          System.out.println(String.join(" ", words)); //join mirrored words together to create output
-          transcript.add(String.join(" ", words) + "\n"); //add output to transcript
-          } else { //if no mirror words detected
+          System.out.println(String.join(" ", words)); //joins mirrored words together to create output
+          transcript.add(String.join(" ", words) + "\n"); //adds output to transcript
+          } else { //if no mirror words detected are detected, a random fixed response will be printed
           Random rand = new Random();
           int upperbound = 6;
-          int random_response = rand.nextInt(upperbound); //output a random canned response
-          System.out.println(responses[random_response]); //print canned response
+          int random_response = rand.nextInt(upperbound); //outputs a random fixed response from the chatbot
+          System.out.println(responses[random_response]); //prints a random fixed response
           transcript.add(responses[random_response] + "\n");
-                 } //add canned response to transcript
+                 } //adds the fixed response to transcript
         }
-      System.out.println("Bye"); //print "Bye" after all rounds are done
-      transcript.toString(); //convert array list transcript to string
-      System.out.println("\n" + "TRANSCRIPT:" + "\n" + String.join("", transcript) + "Bye"); //print transcript
+      System.out.println("Bye!"); //prints "Bye!" after all conversation rounds are complete
+      transcript.toString(); //converts array list transcript into a string
+      System.out.println("\n" + "TRANSCRIPT:" + "\n" + String.join("", transcript) + "Bye!"); //prints out the newly converted transcript
   }
 } 
