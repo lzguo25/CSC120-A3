@@ -1,108 +1,96 @@
-import java.util.Scanner;
+import java.util.*;
+
 class Conversation {
+  public static void main(String[] arguments) 
+  {
+    List <String> transcript = new ArrayList<>(); //this will create an array list for the conversation transcript
+    System.out.print("How many rounds of conversation would you like? "); //prints out a question asking for a user input
+    Scanner input = new Scanner(System.in); //scans the input for the number of desired rounds
+    int numRounds = input.nextInt();
 
-  public static void main(String[] arguments) {
-    // This takes in user input.
-    Scanner input = new Scanner(System.in);
-    input.useDelimiter(System.getProperty("line.separator"));
+    Scanner user_input = new Scanner(System.in); //scans the user input and determines how many rounds there will be
+    String answer = input.nextLine();
 
-
-    //Greets the user and asks for an int input.
-    System.out.println("Hi there! What's your name?");
+    System.out.println("What's your name?");//prints an initial prompt for the user to answer
+    transcript.add("What's your name?\n"); //adds the initial prompt to array list for transcript
+    
     String name = input.next();
-    System.out.println("Hello " + name +"!");
+    System.out.println("Hello " + name +"!"); //prints the greeting to the user
+    transcript.add("Hello " + name +"!");//adds the greeting to array list for transcript
 
-    System.out.print("How many rounds of conversation would you like," + name + " ?");
-    int user_Round_Number = input.nextInt();
-
-    
-    
-    //Loop determines how many rounds of conversation will occur based on user input to user_Round_Number
-    for (int i = 0; i <= user_Round_Number; i++) {
-      if (user_Round_Number == 0) {
-            System.out.println("Okay, bye.");
-
-      } else {
-            System.out.println("Ok, let's start! What's in your mind today?");
-            break;
-
-      }
-    }
-
-
-
-
-
-
-    //Conversation begins
-    for (int i = 0; i < user_Round_Number; i++){
-      String user_response = input.next();
-      System.out.println("Aja");
+    System.out.println("Okay, let's start!");
+    transcript.add("Okay, let's start! \n ");
 
     
 
+    
+    System.out.println("How's your day been?"); //prints another prompt for the user to answer
+    transcript.add("How's your day been? \n"); //adds the prompt to array list for transcript
+    String response = input.next();
 
-    }
-
-    //* I -> you 
-    // * me -> you
-    // * am -> are
-    // * you -> I
-    // * my -> your
-    // * your -> my
-
+    String[] responses = new String[]{"Uh huh.", "Interesting.", "That's good to hear.", "Ok.", "Cool beans.", "That is amusing."}; //create string of canned responses
     
 
+    //The loop will go on for however many rounds the user inputted
+    for (int i = 0; i < numRounds; i++){ 
+      String newUserInput = input.nextLine(); //take in user input
+      transcript.add(newUserInput + "\n"); //add user input to array list for transcript
 
-
-
-
-
-    
-    System.out.println("What would you like to talk about?");
-
-
-    String convoStarter = input.next();
-    if (convoStarter.contains("you")){
-      String chatResponse = convoStarter.replace("you", "I");
-      System.out.println(chatResponse);
-    };
-
-    // if (convoStarter.contains(s:"I")){
-    //   String
-    // }
-    
-    // System.out.println(convoStarter);
-    input.close();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-    //variable for conversation transcript
-    char transcript[];
-    
-}
-}
-
+      // The conditional statements will identify mirror words
+        if (newUserInput.contains(" you ") || newUserInput.contains("You") || 
+        newUserInput.contains("I ") || newUserInput.contains(" I ")|| 
+        newUserInput.contains(" me ") || newUserInput.contains("Me ") || 
+        newUserInput.contains(" my ") || newUserInput.contains("My ") || 
+        newUserInput.contains(" am ") || newUserInput.contains(" are ") || 
+        newUserInput.contains(" your ") || newUserInput.contains("Your ") || 
+        newUserInput.contains("You're ") || newUserInput.contains(" you're ") || 
+        newUserInput.contains("I'm ") || newUserInput.contains(" I'm ")
+          ){ 
+              String [] words = newUserInput.split(" "); //this will "split" the user input into individual words
+              for (int j =0; j < words.length; j++) { //will identify a mirror word (if present) for every instance it appears in the user input and will mirror it
+                if (words[j].equals("I"))
+                {
+                  words[j]= "you";
+                } else if (words[j].equals("you")){
+                  words[j]= "I";
+                } else if (words[j].equals("You")){
+                  words[j]= "I";
+                } else if (words[j].equals("me")){
+                  words[j]= "you";
+                } else if (words[j].equals("Me")){
+                  words[j]= "You";
+                } else if (words[j].equals("am")){
+                  words[j]= "are";
+                } else if (words[j].equals("are")){
+                  words[j]= "am";
+                } else if (words[j].equals("my")){
+                  words[j]= "your";
+                } else if (words[j].equals("My")){
+                  words[j]= "Your";
+                }else if (words[j].equals("your")){
+                  words[j]= "my";
+                } else if (words[j].equals("Your")){
+                  words[j]= "My";
+                } else if (words[j].equals("You're")){
+                  words[j]= "I'm";
+                } else if (words[j].equals("I'm")){
+                  words[j]= "You're";
+                } else if (words[j].equals("you're")){
+                  words[j]= "I'm";
+                } 
+              }
+          System.out.println(String.join(" ", words)); //join mirrored words together to create output
+          transcript.add(String.join(" ", words) + "\n"); //add output to transcript
+          } else { //if no mirror words detected
+          Random rand = new Random();
+          int upperbound = 6;
+          int random_response = rand.nextInt(upperbound); //output a random canned response
+          System.out.println(responses[random_response]); //print canned response
+          transcript.add(responses[random_response] + "\n");
+                 } //add canned response to transcript
+        }
+      System.out.println("Bye"); //print "Bye" after all rounds are done
+      transcript.toString(); //convert array list transcript to string
+      System.out.println("\n" + "TRANSCRIPT:" + "\n" + String.join("", transcript) + "Bye"); //print transcript
+  }
+} 
