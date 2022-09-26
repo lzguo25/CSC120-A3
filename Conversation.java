@@ -2,7 +2,6 @@
 - Conversation.java
 - Lily Z. G, Juniper H. Lesly H. Priscilla T.
 - A Java file that contains the class Conversation and its required methods. The program carries on a simple back-and-forth conversation with the user. It first asks the user to choose a number of rounds of conversation. Then it takes turns printing messages to the user and accepting responses until the specified number of rounds are complete. Finally, it ends the conversation by saying bye and then printing a transcript of the entire conversation for the user.
-
  */
 
 import java.util.*;
@@ -102,6 +101,7 @@ class Conversation {
                   words[j]= "you?";
                 }
               }
+              
           System.out.println(String.join(" ", words)); //joins mirrored words together to create output, and prints out everything as opposed to just the first word
           transcript.add(String.join(" ", words) + "\n"); //adds the output to transcript
           } else { //if no mirror words are detected, a random fixed response will be printed
