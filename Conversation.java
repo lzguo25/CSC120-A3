@@ -78,12 +78,14 @@ class Conversation {
                   words[j]= "are";
                 } else if (words[j].equals("are")){
                   words[j]= "am";
+                }else if (words[j].equals("Are")){
+                    words[j]= "Am";
                 } else if (words[j].equals("my")){
                   words[j]= "your";
                 } else if (words[j].equals("My")){
                   words[j]= "Your";
                 }else if (words[j].equals("your")){
-                  words[j]= "my";
+                    words[j]= "my";
                 } else if (words[j].equals("Your")){
                   words[j]= "My";
                 } else if (words[j].equals("You're")){
@@ -93,7 +95,7 @@ class Conversation {
                 } else if (words[j].equals("you're")){
                   words[j]= "I'm";
                 } else if (words[j].equals("you?")){
-                words[j]= "I?";
+                  words[j]= "I?";
                 } else if (words[j].equals("You?")){
                   words[j]= "I?";
                 } else if (words[j].equals("I?")){
