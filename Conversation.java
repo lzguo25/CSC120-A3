@@ -78,7 +78,7 @@ class Conversation {
                 } else if (words[j].equals("My")){
                   words[j]= "Your";
                 }else if (words[j].equals("your")){
-                  words[j]= "my";
+                    words[j]= "my";
                 } else if (words[j].equals("Your")){
                   words[j]= "My";
                 } else if (words[j].equals("You're")){
@@ -87,7 +87,13 @@ class Conversation {
                   words[j]= "You're";
                 } else if (words[j].equals("you're")){
                   words[j]= "I'm";
-                } 
+                } else if (words[j].equals("you?")){
+                  words[j]= "I?";
+                } else if (words[j].equals("You?")){
+                  words[j]= "I?";
+                } else if (words[j].equals("I?")){
+                  words[j]= "you?";
+                }
               }
           System.out.println(String.join(" ", words)); //joins mirrored words together to create output, and prints out everything as opposed to just the first word
           transcript.add(String.join(" ", words) + "\n"); //adds the output to transcript
