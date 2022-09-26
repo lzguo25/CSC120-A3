@@ -71,6 +71,8 @@ class Conversation {
                   words[j]= "are";
                 } else if (words[j].equals("are")){
                   words[j]= "am";
+                }else if (words[j].equals("Are")){
+                    words[j]= "Am";
                 } else if (words[j].equals("my")){
                   words[j]= "your";
                 } else if (words[j].equals("My")){
